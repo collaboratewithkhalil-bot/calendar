@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KJsCalendar</title>
+  <title>Coach Khalil</title>
 
   <style>
     :root {
-      --dark: #0f172a;     /* deep navy */
+      --dark: #0f172a;
       --darker: #020617;
       --light: #ffffff;
       --muted: #cbd5e1;
@@ -28,32 +28,27 @@
       line-height: 1.6;
     }
 
-    /* HERO / BANNER */
+    /* BANNER */
     .hero {
       background: linear-gradient(180deg, var(--dark), var(--darker));
       color: var(--light);
-      padding: 80px 24px 96px;
+      padding: 88px 24px 96px;
       text-align: center;
-    }
-
-    .hero h1 {
-      margin: 0 0 12px;
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
     }
 
     .hero p {
       margin: 0;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
+      font-weight: 500;
       color: var(--muted);
+      letter-spacing: 0.01em;
     }
 
-    /* MAIN CONTENT */
+    /* CONTENT */
     .container {
       max-width: 1100px;
       margin: -64px auto 0;
-      padding: 0 24px 80px;
+      padding: 0 24px 96px;
     }
 
     .services {
@@ -62,6 +57,7 @@
       gap: 32px;
     }
 
+    /* CLICKABLE CARD */
     .card {
       background: #ffffff;
       border: 1px solid var(--border);
@@ -70,6 +66,15 @@
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
     }
 
     .card h2 {
@@ -79,90 +84,61 @@
     }
 
     .card p {
-      margin: 0 0 32px;
+      margin: 0 0 28px;
       color: #4b5563;
       font-size: 0.95rem;
     }
 
-    .card a {
-      align-self: flex-start;
-      text-decoration: none;
-      background: var(--dark);
-      color: var(--light);
-      padding: 12px 20px;
-      font-size: 0.9rem;
+    .cta {
       font-weight: 600;
-      border-radius: 6px;
-      transition: background 0.2s ease, transform 0.1s ease;
-    }
-
-    .card a:hover {
-      background: #020617;
-      transform: translateY(-1px);
-    }
-
-    .footer-note {
-      text-align: center;
-      margin-top: 72px;
-      font-size: 0.85rem;
-      color: #6b7280;
+      color: var(--dark);
+      font-size: 0.9rem;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO -->
+  <!-- BANNER -->
   <section class="hero">
-    <h1>KJsCalendar</h1>
     <p>Coach Khalil · Business Operations, Partnerships, and Mentorship</p>
   </section>
 
-  <!-- CONTENT -->
+  <!-- SERVICES -->
   <main class="container">
     <section class="services">
 
-      <div class="card">
+      <a class="card" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
         <h2>Business Operations & Partnerships Consulting</h2>
         <p>
           For founders and small teams who want execution to continue after
           agreements are made. Focused on follow-through, ownership, payments,
           and partner coordination so progress doesn’t stall.
         </p>
-        <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
-          Book this call
-        </a>
-      </div>
+        <span class="cta">Book this call →</span>
+      </a>
 
-      <div class="card">
+      <a class="card" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
         <h2>Relocation & Business Reality Consulting (Philippines)</h2>
         <p>
           Grounded, real-world insight for those considering relocation or
-          business in the Philippines — cultural expectations, realities, and
-          adjustments people usually learn the hard way.
+          business in the Philippines — cultural expectations, realities,
+          and adjustments people usually learn the hard way.
         </p>
-        <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
-          Book this call
-        </a>
-      </div>
+        <span class="cta">Book this call →</span>
+      </a>
 
-      <div class="card">
+      <a class="card" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
         <h2>Mentorship & Mental Resilience Coaching for Men</h2>
         <p>
           For men navigating pressure, relocation, or major transitions.
           Not therapy — structured conversation focused on clarity,
           steadiness, and forward movement.
         </p>
-        <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
-          Book this call
-        </a>
-      </div>
+        <span class="cta">Book this call →</span>
+      </a>
 
     </section>
-
-    <div class="footer-note">
-      After booking, you’ll be asked what you’d like to focus on during the call.
-    </div>
   </main>
 
 </body>
