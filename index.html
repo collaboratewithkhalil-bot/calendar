@@ -57,7 +57,6 @@
       gap: 32px;
     }
 
-    /* CLICKABLE CARD */
     .card {
       background: #ffffff;
       border: 1px solid var(--border);
@@ -66,8 +65,6 @@
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-      text-decoration: none;
-      color: inherit;
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
@@ -94,6 +91,60 @@
       color: var(--dark);
       font-size: 0.9rem;
     }
+
+    /* CONFIRM OVERLAY */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .overlay.active {
+      display: flex;
+    }
+
+    .confirm-box {
+      max-width: 540px;
+      padding: 40px;
+      background: #020617;
+      border-radius: 8px;
+      color: #ffffff;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .confirm-box h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .confirm-box p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .confirm-box .button {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 20px;
+      background: #ffffff;
+      color: #020617;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 6px;
+    }
+
+    .timer {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
   </style>
 </head>
 
@@ -108,7 +159,7 @@
   <main class="container">
     <section class="services">
 
-      <a class="card" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
+      <div class="card" onclick="openConfirm()">
         <h2>Business Operations & Partnerships Consulting</h2>
         <p>
           For founders and small teams who want execution to continue after
@@ -116,9 +167,9 @@
           and partner coordination so progress doesn’t stall.
         </p>
         <span class="cta">Book this call →</span>
-      </a>
+      </div>
 
-      <a class="card" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
+      <div class="card" onclick="openConfirm()">
         <h2>Relocation & Business Reality Consulting (Philippines)</h2>
         <p>
           Grounded, real-world insight for those considering relocation or
@@ -126,9 +177,9 @@
           and adjustments people usually learn the hard way.
         </p>
         <span class="cta">Book this call →</span>
-      </a>
+      </div>
 
-      <a class="card" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
+      <div class="card" onclick="openConfirm()">
         <h2>Mentorship & Mental Resilience Coaching for Men</h2>
         <p>
           For men navigating pressure, relocation, or major transitions.
@@ -136,10 +187,58 @@
           steadiness, and forward movement.
         </p>
         <span class="cta">Book this call →</span>
-      </a>
+      </div>
 
     </section>
   </main>
+
+  <!-- CONFIRMATION OVERLAY -->
+  <div class="overlay" id="confirmOverlay">
+    <div class="confirm-box">
+      <h3>Before you continue</h3>
+
+      <p>By booking this session, you acknowledge that:</p>
+
+      <p>
+        • The consultation fee is <strong>$100 USD</strong><br>
+        • A <strong>50% down payment</strong> is required on the day of booking<br>
+        • Payment details will be shared shortly after booking<br>
+        • The remaining balance is settled after the session
+      </p>
+
+      <p>
+        Preferred payment method is <strong>Wise</strong>.
+        Venmo, Zelle, Chase bank transfer, and GCash are also accepted.
+      </p>
+
+      <a class="button" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
+        Continue to booking →
+      </a>
+
+      <div class="timer" id="timerText">
+        You’ll be redirected automatically in 30 seconds.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let countdown = 30;
+    let timer;
+
+    function openConfirm() {
+      document.getElementById('confirmOverlay').classList.add('active');
+
+      timer = setInterval(() => {
+        countdown--;
+        document.getElementById('timerText').textContent =
+          `You’ll be redirected automatically in ${countdown} seconds.`;
+
+        if (countdown <= 0) {
+          window.location.href = 'https://calendar.app.google/PT9hRYAi5MHbscxc9';
+        }
+      }, 1000);
+    }
+  </script>
 
 </body>
 </html>
