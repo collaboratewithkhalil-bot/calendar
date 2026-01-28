@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KJsCalendar</title>
+
+  <style>
+    :root {
+      --dark: #0f172a;     /* deep navy */
+      --darker: #020617;
+      --light: #ffffff;
+      --muted: #cbd5e1;
+      --text: #111827;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Inter, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* HERO / BANNER */
+    .hero {
+      background: linear-gradient(180deg, var(--dark), var(--darker));
+      color: var(--light);
+      padding: 80px 24px 96px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--muted);
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      max-width: 1100px;
+      margin: -64px auto 0;
+      padding: 0 24px 80px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+
+    .card h2 {
+      margin: 0 0 16px;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .card p {
+      margin: 0 0 32px;
+      color: #4b5563;
+      font-size: 0.95rem;
+    }
+
+    .card a {
+      align-self: flex-start;
+      text-decoration: none;
+      background: var(--dark);
+      color: var(--light);
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .card a:hover {
+      background: #020617;
+      transform: translateY(-1px);
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 72px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>KJsCalendar</h1>
+    <p>Coach Khalil · Business Operations, Partnerships, and Mentorship</p>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="container">
+    <section class="services">
+
+      <div class="card">
+        <h2>Business Operations & Partnerships Consulting</h2>
+        <p>
+          For founders and small teams who want execution to continue after
+          agreements are made. Focused on follow-through, ownership, payments,
+          and partner coordination so progress doesn’t stall.
+        </p>
+        <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
+          Book this call
+        </a>
+      </div>
+
+      <div class="card">
+        <h2>Relocation & Business Reality Consulting (Philippines)</h2>
+        <p>
+          Grounded, real-world insight for those considering relocation or
+          business in the Philippines — cultural expectations, realities, and
+          adjustments people usually learn the hard way.
+        </p>
+        <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
+          Book this call
+        </a>
+      </div>
+
+      <div class="card">
+        <h2>Mentorship & Mental Resilience Coaching for Men</h2>
+        <p>
+          For men navigating pressure, relocation, or major transitions.
+          Not therapy — structured conversation focused on clarity,
+          steadiness, and forward movement.
+        </p>
+        <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
+          Book this call
+        </a>
+      </div>
+
+    </section>
+
+    <div class="footer-note">
+      After booking, you’ll be asked what you’d like to focus on during the call.
+    </div>
+  </main>
+
+</body>
+</html>
