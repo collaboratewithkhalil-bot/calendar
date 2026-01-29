@@ -15,9 +15,7 @@
       --border: #e5e7eb;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -28,7 +26,7 @@
       line-height: 1.6;
     }
 
-    /* BANNER */
+    /* HERO */
     .hero {
       background: linear-gradient(180deg, var(--dark), var(--darker));
       color: var(--light);
@@ -41,10 +39,9 @@
       font-size: 1.2rem;
       font-weight: 500;
       color: var(--muted);
-      letter-spacing: 0.01em;
     }
 
-    /* CONTENT */
+    /* MAIN */
     .container {
       max-width: 1100px;
       margin: -64px auto 0;
@@ -55,15 +52,13 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 32px;
+      margin-bottom: 96px;
     }
 
     .card {
       background: #ffffff;
       border: 1px solid var(--border);
       padding: 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       box-shadow: 0 10px 30px rgba(0,0,0,0.04);
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -92,6 +87,41 @@
       font-size: 0.9rem;
     }
 
+    /* TESTIMONIALS */
+    .testimonials {
+      margin-bottom: 96px;
+    }
+
+    .testimonials h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-track {
+      display: flex;
+      gap: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .testimonial {
+      min-width: 320px;
+      max-width: 320px;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      padding: 24px;
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    .testimonial span {
+      display: block;
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
     /* CONFIRM OVERLAY */
     .overlay {
       position: fixed;
@@ -103,9 +133,7 @@
       z-index: 1000;
     }
 
-    .overlay.active {
-      display: flex;
-    }
+    .overlay.active { display: flex; }
 
     .confirm-box {
       max-width: 540px;
@@ -113,7 +141,6 @@
       background: #020617;
       border-radius: 8px;
       color: #ffffff;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
 
     .confirm-box h3 {
@@ -150,94 +177,90 @@
 
 <body>
 
-  <!-- BANNER -->
   <section class="hero">
     <p>Coach Khalil · Business Operations, Partnerships, and Mentorship</p>
   </section>
 
-  <!-- SERVICES -->
   <main class="container">
-    <section class="services">
 
+    <!-- SERVICES -->
+    <section class="services">
       <div class="card" onclick="openConfirm()">
         <h2>Business Operations & Partnerships Consulting</h2>
-        <p>
-          For founders and small teams who want execution to continue after
-          agreements are made. Focused on follow-through, ownership, payments,
-          and partner coordination so progress doesn’t stall.
-        </p>
+        <p>For founders and teams who want execution to continue after decisions are made.</p>
         <span class="cta">Book this call →</span>
       </div>
 
       <div class="card" onclick="openConfirm()">
         <h2>Relocation & Business Reality Consulting (Philippines)</h2>
-        <p>
-          Grounded, real-world insight for those considering relocation or
-          business in the Philippines — cultural expectations, realities,
-          and adjustments people usually learn the hard way.
-        </p>
+        <p>Grounded insight into relocation, business culture, and real-world adjustments.</p>
         <span class="cta">Book this call →</span>
       </div>
 
       <div class="card" onclick="openConfirm()">
         <h2>Mentorship & Mental Resilience Coaching for Men</h2>
-        <p>
-          For men navigating pressure, relocation, or major transitions.
-          Not therapy — structured conversation focused on clarity,
-          steadiness, and forward movement.
-        </p>
+        <p>Practical, steady guidance during business pressure or life transitions.</p>
         <span class="cta">Book this call →</span>
       </div>
-
     </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+      <h3>What clients say</h3>
+      <div class="testimonial-track" id="testimonialTrack">
+        <div class="testimonial">“Khalil brought order to areas we didn’t even realize were slowing us down.”<span>Mark D., Founder — UK</span></div>
+        <div class="testimonial">“He has strong judgment and knows what deserves attention and what doesn’t.”<span>Rashid A., Ops Manager — Qatar</span></div>
+        <div class="testimonial">“When Khalil owned something, it got done without reminders or drama.”<span>Jason M., Business Owner — US</span></div>
+        <div class="testimonial">“Communication became clearer and issues were resolved faster.”<span>Elaine T., Admin Lead — PH</span></div>
+        <div class="testimonial">“He handled cultural and operational gaps thoughtfully.”<span>Daniel K., Partner — MY</span></div>
+        <div class="testimonial">“Calm and practical, even when things were messy.”<span>Luis R., Entrepreneur — PH</span></div>
+        <div class="testimonial">“Felt like a trusted internal advisor.”<span>Sarah W., Director — US</span></div>
+        <div class="testimonial">“He listened first, then acted where it mattered.”<span>Ahmed N., Ops Lead — Qatar</span></div>
+        <div class="testimonial">“Grounded mentoring that saved time and confusion.”<span>Tom B., Consultant — UK</span></div>
+        <div class="testimonial">“Focused, discreet, and mature.”<span>Michael S., Founder — PH</span></div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- CONFIRMATION OVERLAY -->
+  <!-- CONFIRM OVERLAY -->
   <div class="overlay" id="confirmOverlay">
     <div class="confirm-box">
       <h3>Before you continue</h3>
-
-      <p>By booking this session, you acknowledge that:</p>
-
+      <p>By booking this session, you acknowledge:</p>
       <p>
-        • The consultation fee is <strong>$100 USD</strong><br>
-        • A <strong>50% down payment</strong> is required on the day of booking<br>
-        • Payment details will be shared shortly after booking<br>
-        • The remaining balance is settled after the session
+        • $100 USD session fee<br>
+        • 50% due on booking day<br>
+        • Balance settled after the session
       </p>
-
-      <p>
-        Preferred payment method is <strong>Wise</strong>.
-        Venmo, Zelle, Chase bank transfer, and GCash are also accepted.
-      </p>
-
-      <a class="button" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">
-        Continue to booking →
-      </a>
-
-      <div class="timer" id="timerText">
-        You’ll be redirected automatically in 30 seconds.
-      </div>
+      <p>Preferred payment: Wise. Venmo, Zelle, Chase, and GCash accepted.</p>
+      <a class="button" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">Continue to booking →</a>
+      <div class="timer" id="timerText">Redirecting in 30 seconds…</div>
     </div>
   </div>
 
   <script>
     let countdown = 30;
-    let timer;
-
     function openConfirm() {
       document.getElementById('confirmOverlay').classList.add('active');
-
-      timer = setInterval(() => {
+      setInterval(() => {
         countdown--;
         document.getElementById('timerText').textContent =
-          `You’ll be redirected automatically in ${countdown} seconds.`;
-
+          `Redirecting in ${countdown} seconds…`;
         if (countdown <= 0) {
           window.location.href = 'https://calendar.app.google/PT9hRYAi5MHbscxc9';
         }
       }, 1000);
     }
+
+    // Auto-scroll testimonials
+    const track = document.getElementById('testimonialTrack');
+    let scrollPos = 0;
+    setInterval(() => {
+      scrollPos += 1;
+      if (scrollPos >= track.scrollWidth / 2) scrollPos = 0;
+      track.scrollLeft = scrollPos;
+    }, 40);
   </script>
 
 </body>
