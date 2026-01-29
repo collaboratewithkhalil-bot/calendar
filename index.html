@@ -1,267 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coach Khalil</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Coach Khalil</title>
 
-  <style>
-    :root {
-      --dark: #0f172a;
-      --darker: #020617;
-      --light: #ffffff;
-      --muted: #cbd5e1;
-      --text: #111827;
-      --border: #e5e7eb;
-    }
+<style>
+:root {
+  --dark:#0f172a;
+  --darker:#020617;
+  --light:#ffffff;
+  --muted:#cbd5e1;
+  --text:#111827;
+  --border:#e5e7eb;
+}
 
-    * { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, Inter, Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background: #ffffff;
-      line-height: 1.6;
-    }
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+  background:#fff;
+  color:var(--text);
+  line-height:1.6;
+}
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(180deg, var(--dark), var(--darker));
-      color: var(--light);
-      padding: 88px 24px 96px;
-      text-align: center;
-    }
+/* HERO */
+.hero{
+  background:linear-gradient(180deg,var(--dark),var(--darker));
+  padding:90px 24px 100px;
+  text-align:center;
+}
+.hero p{
+  color:var(--muted);
+  font-size:1.2rem;
+  margin:0;
+}
 
-    .hero p {
-      margin: 0;
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: var(--muted);
-    }
+/* MAIN */
+.container{
+  max-width:1100px;
+  margin:-64px auto 0;
+  padding:0 24px 96px;
+}
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:32px;
+}
 
-    /* MAIN */
-    .container {
-      max-width: 1100px;
-      margin: -64px auto 0;
-      padding: 0 24px 96px;
-    }
+/* CARD */
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  padding:36px;
+  box-shadow:0 10px 30px rgba(0,0,0,.04);
+}
+.card h2{
+  margin:0 0 16px;
+  font-size:1.25rem;
+}
+.card p{
+  color:#4b5563;
+  font-size:.95rem;
+  margin-bottom:24px;
+}
+.card-actions{
+  display:flex;
+  gap:16px;
+  font-weight:600;
+  font-size:.9rem;
+}
+.card-actions span{
+  cursor:pointer;
+  color:var(--dark);
+}
 
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-      margin-bottom: 96px;
-    }
+/* DETAIL MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+.modal.active{display:flex}
 
-    .card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      padding: 36px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
+.modal-box{
+  max-width:720px;
+  background:#020617;
+  color:#fff;
+  padding:48px;
+  border-radius:8px;
+}
+.modal-box h3{
+  margin-top:0;
+  font-size:1.5rem;
+}
+.modal-box p{
+  color:#cbd5e1;
+  font-size:1rem;
+}
+.close{
+  margin-top:24px;
+  font-weight:600;
+  cursor:pointer;
+  color:#fff;
+}
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
-
-    .card h2 {
-      margin: 0 0 16px;
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-
-    .card p {
-      margin: 0 0 28px;
-      color: #4b5563;
-      font-size: 0.95rem;
-    }
-
-    .cta {
-      font-weight: 600;
-      color: var(--dark);
-      font-size: 0.9rem;
-    }
-
-    /* TESTIMONIALS */
-    .testimonials {
-      margin-bottom: 96px;
-    }
-
-    .testimonials h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    .testimonial-track {
-      display: flex;
-      gap: 24px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .testimonial {
-      min-width: 320px;
-      max-width: 320px;
-      background: #f9fafb;
-      border: 1px solid var(--border);
-      padding: 24px;
-      font-size: 0.9rem;
-      color: #374151;
-    }
-
-    .testimonial span {
-      display: block;
-      margin-top: 16px;
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
-
-    /* CONFIRM OVERLAY */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 6, 23, 0.92);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .overlay.active { display: flex; }
-
-    .confirm-box {
-      max-width: 540px;
-      padding: 40px;
-      background: #020617;
-      border-radius: 8px;
-      color: #ffffff;
-    }
-
-    .confirm-box h3 {
-      margin-top: 0;
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-    }
-
-    .confirm-box p {
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .confirm-box .button {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 12px 20px;
-      background: #ffffff;
-      color: #020617;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 6px;
-    }
-
-    .timer {
-      margin-top: 16px;
-      font-size: 0.85rem;
-      color: #94a3b8;
-    }
-  </style>
+/* CONFIRM */
+.confirm{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+.confirm.active{display:flex}
+.confirm-box{
+  background:#020617;
+  color:#fff;
+  padding:40px;
+  max-width:520px;
+}
+.confirm-box a{
+  display:inline-block;
+  margin-top:20px;
+  background:#fff;
+  color:#020617;
+  padding:12px 20px;
+  text-decoration:none;
+  font-weight:600;
+}
+.timer{
+  margin-top:12px;
+  font-size:.85rem;
+  color:#94a3b8;
+}
+</style>
 </head>
 
 <body>
 
-  <section class="hero">
-    <p>Coach Khalil · Business Operations, Partnerships, and Mentorship</p>
-  </section>
+<section class="hero">
+<p>Coach Khalil · Business Operations, Partnerships, and Mentorship</p>
+</section>
 
-  <main class="container">
+<main class="container">
 
-    <!-- SERVICES -->
-    <section class="services">
-      <div class="card" onclick="openConfirm()">
-        <h2>Business Operations & Partnerships Consulting</h2>
-        <p>For founders and teams who want execution to continue after decisions are made.</p>
-        <span class="cta">Book this call →</span>
-      </div>
+<section class="services">
 
-      <div class="card" onclick="openConfirm()">
-        <h2>Relocation & Business Reality Consulting (Philippines)</h2>
-        <p>Grounded insight into relocation, business culture, and real-world adjustments.</p>
-        <span class="cta">Book this call →</span>
-      </div>
+<div class="card">
+<h2>Business Operations & Partnerships Consulting</h2>
+<p>For founders and teams who want execution to continue after decisions are made.</p>
+<div class="card-actions">
+<span onclick="openDetail('ops')">See details</span>
+<span onclick="openConfirm()">Book this call →</span>
+</div>
+</div>
 
-      <div class="card" onclick="openConfirm()">
-        <h2>Mentorship & Mental Resilience Coaching for Men</h2>
-        <p>Practical, steady guidance during business pressure or life transitions.</p>
-        <span class="cta">Book this call →</span>
-      </div>
-    </section>
+<div class="card">
+<h2>Relocation & Business Reality Consulting</h2>
+<p>Grounded insight into relocation, business culture, and real-world adjustments.</p>
+<div class="card-actions">
+<span onclick="openDetail('relocation')">See details</span>
+<span onclick="openConfirm()">Book this call →</span>
+</div>
+</div>
 
-    <!-- TESTIMONIALS -->
-    <section class="testimonials">
-      <h3>What clients say</h3>
-      <div class="testimonial-track" id="testimonialTrack">
-        <div class="testimonial">“Khalil brought order to areas we didn’t even realize were slowing us down.”<span>Mark D., Founder — UK</span></div>
-        <div class="testimonial">“He has strong judgment and knows what deserves attention and what doesn’t.”<span>Rashid A., Ops Manager — Qatar</span></div>
-        <div class="testimonial">“When Khalil owned something, it got done without reminders or drama.”<span>Jason M., Business Owner — US</span></div>
-        <div class="testimonial">“Communication became clearer and issues were resolved faster.”<span>Elaine T., Admin Lead — PH</span></div>
-        <div class="testimonial">“He handled cultural and operational gaps thoughtfully.”<span>Daniel K., Partner — MY</span></div>
-        <div class="testimonial">“Calm and practical, even when things were messy.”<span>Luis R., Entrepreneur — PH</span></div>
-        <div class="testimonial">“Felt like a trusted internal advisor.”<span>Sarah W., Director — US</span></div>
-        <div class="testimonial">“He listened first, then acted where it mattered.”<span>Ahmed N., Ops Lead — Qatar</span></div>
-        <div class="testimonial">“Grounded mentoring that saved time and confusion.”<span>Tom B., Consultant — UK</span></div>
-        <div class="testimonial">“Focused, discreet, and mature.”<span>Michael S., Founder — PH</span></div>
-      </div>
-    </section>
+<div class="card">
+<h2>Mentorship & Mental Resilience Coaching for Men</h2>
+<p>Practical guidance during pressure, relocation, or major life transitions.</p>
+<div class="card-actions">
+<span onclick="openDetail('mentorship')">See details</span>
+<span onclick="openConfirm()">Book this call →</span>
+</div>
+</div>
 
-  </main>
+</section>
+</main>
 
-  <!-- CONFIRM OVERLAY -->
-  <div class="overlay" id="confirmOverlay">
-    <div class="confirm-box">
-      <h3>Before you continue</h3>
-      <p>By booking this session, you acknowledge:</p>
-      <p>
-        • $100 USD session fee<br>
-        • 50% due on booking day<br>
-        • Balance settled after the session
-      </p>
-      <p>Preferred payment: Wise. Venmo, Zelle, Chase, and GCash accepted.</p>
-      <a class="button" href="https://calendar.app.google/PT9hRYAi5MHbscxc9">Continue to booking →</a>
-      <div class="timer" id="timerText">Redirecting in 30 seconds…</div>
-    </div>
-  </div>
+<!-- DETAIL MODALS -->
+<div class="modal" id="detail-ops">
+<div class="modal-box">
+<h3>Business Operations & Partnerships Consulting</h3>
+<p>
+I work with small teams and founders to clean up what happens after agreements are made — follow-ups, admin handoff, payments, and partner coordination.
+My focus is making sure deals don’t stall, responsibilities are clear, and the business can run without constant chasing or firefighting.
+</p>
+<div class="close" onclick="closeDetail()">Close</div>
+</div>
+</div>
 
-  <script>
-    let countdown = 30;
-    function openConfirm() {
-      document.getElementById('confirmOverlay').classList.add('active');
-      setInterval(() => {
-        countdown--;
-        document.getElementById('timerText').textContent =
-          `Redirecting in ${countdown} seconds…`;
-        if (countdown <= 0) {
-          window.location.href = 'https://calendar.app.google/PT9hRYAi5MHbscxc9';
-        }
-      }, 1000);
-    }
+<div class="modal" id="detail-relocation">
+<div class="modal-box">
+<h3>Relocation & Business Reality Consulting</h3>
+<p>
+I offer grounded, real-world insight for people considering moving to or doing business in the Philippines — including cultural expectations,
+business realities, relationships, and lifestyle adjustments people usually only learn the hard way.
+</p>
+<div class="close" onclick="closeDetail()">Close</div>
+</div>
+</div>
 
-    // Auto-scroll testimonials
-    const track = document.getElementById('testimonialTrack');
-    let scrollPos = 0;
-    setInterval(() => {
-      scrollPos += 1;
-      if (scrollPos >= track.scrollWidth / 2) scrollPos = 0;
-      track.scrollLeft = scrollPos;
-    }, 40);
-  </script>
+<div class="modal" id="detail-mentorship">
+<div class="modal-box">
+<h3>Mentorship & Mental Resilience Coaching for Men</h3>
+<p>
+I mentor men who are navigating business pressure, relocation, or major life changes.
+This is not therapy — it’s grounded conversation, perspective, and practical guidance from someone who has lived through instability,
+rebuilding, and growth.
+</p>
+<div class="close" onclick="closeDetail()">Close</div>
+</div>
+</div>
+
+<!-- CONFIRM -->
+<div class="confirm" id="confirmBox">
+<div class="confirm-box">
+<p>By booking this session, you acknowledge:</p>
+<p>• $100 USD session fee<br>• 50% due on booking day<br>• Balance after session</p>
+<p>Preferred payment: Wise · Venmo · Zelle · Chase · GCash</p>
+<a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">Continue to booking →</a>
+<div class="timer" id="timerText">Redirecting in 30 seconds…</div>
+</div>
+</div>
+
+<script>
+let countdown=30;
+function openConfirm(){
+document.getElementById('confirmBox').classList.add('active');
+setInterval(()=>{
+countdown--;
+document.getElementById('timerText').textContent=`Redirecting in ${countdown} seconds…`;
+if(countdown<=0)window.location.href='https://calendar.app.google/PT9hRYAi5MHbscxc9';
+},1000);
+}
+function openDetail(type){
+document.getElementById('detail-'+type).classList.add('active');
+}
+function closeDetail(){
+document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active'));
+}
+</script>
 
 </body>
 </html>
