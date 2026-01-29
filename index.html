@@ -9,10 +9,10 @@
 :root{
   --dark:#0f172a;
   --darker:#020617;
+  --light:#ffffff;
+  --muted:#cbd5e1;
   --text:#111827;
-  --muted:#6b7280;
   --border:#e5e7eb;
-  --soft:#fafafa;
 }
 
 *{box-sizing:border-box}
@@ -20,140 +20,149 @@
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+  background:#fff;
   color:var(--text);
-  background:#ffffff;
   line-height:1.65;
 }
 
 /* HERO */
 .hero{
   background:linear-gradient(180deg,var(--dark),var(--darker));
-  padding:80px 24px 96px;
+  padding:90px 24px 100px;
   text-align:center;
 }
 .hero p{
+  color:var(--muted);
+  font-size:1.2rem;
   margin:0;
-  color:#e5e7eb;
-  font-size:1.15rem;
 }
 
-/* CONTAINER */
+/* MAIN */
 .container{
   max-width:1100px;
-  margin:-56px auto 0;
+  margin:-64px auto 0;
   padding:0 24px 96px;
 }
 
 /* SERVICES */
 .services{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:32px;
+  margin-bottom:96px;
 }
-
 .card{
-  background:#ffffff;
+  background:#fff;
   border:1px solid var(--border);
-  padding:32px;
+  padding:36px;
+  box-shadow:0 10px 30px rgba(0,0,0,.04);
+  cursor:pointer;
+  transition:transform .15s ease,box-shadow .15s ease;
 }
-
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
 .card h2{
   margin:0 0 14px;
   font-size:1.25rem;
 }
-
 .card p{
-  margin:0 0 22px;
-  color:var(--muted);
+  color:#4b5563;
   font-size:.95rem;
+  margin-bottom:18px;
 }
-
-.actions{
-  display:flex;
-  gap:20px;
-  font-size:.9rem;
-}
-
 .learn{
-  cursor:pointer;
-  color:#374151;
-}
-
-.book{
-  cursor:pointer;
   font-weight:600;
+  font-size:.9rem;
   color:var(--dark);
 }
 
 /* TESTIMONIALS */
 .testimonials{
-  margin-top:96px;
+  margin-bottom:96px;
 }
-
+.testimonials h3{
+  font-size:1.15rem;
+  font-weight:600;
+  margin-bottom:24px;
+}
 .track{
   display:flex;
   gap:24px;
-  overflow-x:auto;
+  overflow:hidden;
 }
-
 .quote{
   min-width:320px;
-  background:var(--soft);
+  background:#f9fafb;
   border:1px solid var(--border);
   padding:24px;
   font-size:.9rem;
+  color:#374151;
 }
-
-/* SERVICE DETAIL VIEW */
-.detail{
-  display:none;
-  max-width:760px;
-  margin:72px auto 120px;
-  padding:0 24px;
-}
-
-.detail h1{
-  font-size:1.9rem;
-  margin-bottom:32px;
-}
-
-.detail p{
-  color:#4b5563;
-  margin-bottom:26px;
-}
-
-.back{
+.quote span{
+  display:block;
+  margin-top:14px;
   font-size:.85rem;
   color:#6b7280;
-  cursor:pointer;
-  margin-bottom:32px;
-  display:inline-block;
 }
 
-/* PAYMENT */
-.payment{
+/* DETAIL MODAL */
+.modal{
   position:fixed;
   inset:0;
-  background:rgba(2,6,23,.92);
+  background:rgba(2,6,23,.94);
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:9999;
+  z-index:2000;
 }
-.payment-box{
+.modal.active{display:flex}
+.box{
+  max-width:760px;
+  background:#020617;
+  color:#fff;
+  padding:48px;
+}
+.box h3{
+  margin-top:0;
+  font-size:1.5rem;
+}
+.box p{
+  color:#cbd5e1;
+  font-size:1rem;
+}
+.close{
+  margin-top:24px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* CONFIRM */
+.confirm{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.94);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+.confirm.active{display:flex}
+.confirm-box{
+  max-width:520px;
   background:#020617;
   color:#fff;
   padding:40px;
-  max-width:520px;
 }
-.payment-box a{
+.confirm-box a{
   display:inline-block;
   margin-top:20px;
   background:#fff;
   color:#020617;
   padding:12px 20px;
-  text-decoration:none;
   font-weight:600;
+  text-decoration:none;
 }
 .timer{
   margin-top:12px;
@@ -169,112 +178,106 @@ body{
   <p>Coach Khalil · Business Operations, Partnerships, and Mentorship</p>
 </section>
 
-<!-- FRONT PAGE -->
-<main id="front" class="container">
+<main class="container">
 
+<!-- SERVICES -->
 <section class="services">
+  <div class="card" onclick="openDetail('ops')">
+    <h2>Business Operations & Partnerships Consulting</h2>
+    <p>Post-deal execution, follow-through, and operational clarity.</p>
+    <div class="learn">Learn more →</div>
+  </div>
 
-<div class="card">
-<h2>Business Operations & Partnerships Consulting</h2>
-<p>For founders and teams who want execution to continue after decisions are made.</p>
-<div class="actions">
-<span class="learn" onclick="openDetail('ops')">Learn more</span>
-<span class="book" onclick="openPayment()">Book this call →</span>
-</div>
-</div>
+  <div class="card" onclick="openDetail('relocation')">
+    <h2>Relocation & Business Reality Consulting</h2>
+    <p>Real-world insight for moving to or doing business in the Philippines.</p>
+    <div class="learn">Learn more →</div>
+  </div>
 
-<div class="card">
-<h2>Relocation & Business Reality Consulting</h2>
-<p>Grounded insight into relocation, business culture, and real-world adjustments.</p>
-<div class="actions">
-<span class="learn" onclick="openDetail('relocation')">Learn more</span>
-<span class="book" onclick="openPayment()">Book this call →</span>
-</div>
-</div>
-
-<div class="card">
-<h2>Mentorship & Mental Resilience Coaching for Men</h2>
-<p>Practical guidance during pressure, relocation, or major life transitions.</p>
-<div class="actions">
-<span class="learn" onclick="openDetail('mentorship')">Learn more</span>
-<span class="book" onclick="openPayment()">Book this call →</span>
-</div>
-</div>
-
+  <div class="card" onclick="openDetail('mentorship')">
+    <h2>Mentorship & Mental Resilience Coaching for Men</h2>
+    <p>Grounded guidance during pressure, change, and rebuilding.</p>
+    <div class="learn">Learn more →</div>
+  </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section class="testimonials">
-<div class="track">
-<div class="quote">“Khalil brought order to areas we didn’t realize were slowing us down.”</div>
-<div class="quote">“Strong judgment without noise or pressure.”</div>
-<div class="quote">“Calm and reliable when things were messy.”</div>
+<h3>What clients say</h3>
+<div class="track" id="track">
+  <div class="quote">“Khalil brought order to areas we didn’t realize were slowing us down.”<span>Mark D., UK</span></div>
+  <div class="quote">“Strong judgment. He knew what mattered and what didn’t.”<span>Rashid A., Qatar</span></div>
+  <div class="quote">“When Khalil owned something, it got done.”<span>Jason M., US</span></div>
+  <div class="quote">“Communication became clearer across teams.”<span>Elaine T., PH</span></div>
+  <div class="quote">“Handled cross-border gaps thoughtfully.”<span>Daniel K., MY</span></div>
+  <div class="quote">“Calm and practical under pressure.”<span>Luis R., PH</span></div>
+  <div class="quote">“Felt like an internal advisor.”<span>Sarah W., US</span></div>
+  <div class="quote">“Listened first, acted where it mattered.”<span>Ahmed N., Qatar</span></div>
+  <div class="quote">“Grounded mentoring, no fluff.”<span>Tom B., UK</span></div>
+  <div class="quote">“Focused and discreet.”<span>Michael S., PH</span></div>
 </div>
 </section>
 
 </main>
 
-<!-- SERVICE DETAIL -->
-<section id="detail" class="detail">
-<span class="back" onclick="closeDetail()">← Back to services</span>
-<h1 id="detailTitle"></h1>
-<div id="detailText"></div>
-<span class="book" onclick="openPayment()">Book this call →</span>
-</section>
+<!-- DETAIL MODALS -->
+<div class="modal" id="ops">
+<div class="box">
+<h3>Business Operations & Partnerships Consulting</h3>
+<p>I work with small teams and founders to clean up what happens after agreements are made — follow-ups, admin handoff, payments, and partner coordination. My focus is making sure deals don’t stall, responsibilities are clear, and the business can run without constant chasing or firefighting.</p>
+<div class="close" onclick="openConfirm()">Continue →</div>
+</div>
+</div>
 
-<!-- PAYMENT -->
-<div id="payment" class="payment">
-<div class="payment-box">
+<div class="modal" id="relocation">
+<div class="box">
+<h3>Relocation & Business Reality Consulting</h3>
+<p>I offer grounded, real-world insight for people considering moving to or doing business in the Philippines — including cultural expectations, business realities, relationships, and lifestyle adjustments people usually only learn the hard way.</p>
+<div class="close" onclick="openConfirm()">Continue →</div>
+</div>
+</div>
+
+<div class="modal" id="mentorship">
+<div class="box">
+<h3>Mentorship & Mental Resilience Coaching for Men</h3>
+<p>I mentor men who are navigating business pressure, relocation, or major life changes. This is not therapy — it’s grounded conversation, perspective, and practical guidance from someone who has lived through instability, rebuilding, and growth.</p>
+<div class="close" onclick="openConfirm()">Continue →</div>
+</div>
+</div>
+
+<!-- CONFIRM -->
+<div class="confirm" id="confirm">
+<div class="confirm-box">
+<p>By booking this session, you acknowledge that:</p>
 <p>
-• $100 USD session<br>
-• 50% due on booking day<br>
-• Balance after the session
+• The consultation fee is $100 USD<br>
+• A 50% down payment is required on the day of booking<br>
+• Payment details will be shared after booking<br>
+• The remaining balance is settled after the session
 </p>
-<p>Wise preferred · Venmo · Zelle · Chase · GCash</p>
+<p>Preferred payment method is Wise. Venmo, Zelle, Chase bank transfer, and GCash are also accepted.</p>
 <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">Continue to booking →</a>
 <div class="timer" id="timer">Redirecting in 30 seconds…</div>
 </div>
 </div>
 
 <script>
-const details={
-ops:{
-title:"Business Operations & Partnerships Consulting",
-text:`<p>I work with small teams and founders to clean up what happens after agreements are made — follow-ups, admin handoff, payments, and partner coordination.</p>
-<p>My focus is making sure deals don’t stall, responsibilities are clear, and the business can run without constant chasing or firefighting.</p>`
-},
-relocation:{
-title:"Relocation & Business Reality Consulting",
-text:`<p>I offer grounded, real-world insight for people considering moving to or doing business in the Philippines — including cultural expectations, business realities, relationships, and lifestyle adjustments people usually only learn the hard way.</p>`
-},
-mentorship:{
-title:"Mentorship & Mental Resilience Coaching for Men",
-text:`<p>I mentor men navigating business pressure, relocation, or major life changes. This is not therapy — it’s grounded conversation, perspective, and practical guidance from lived experience.</p>`
+function openDetail(id){
+document.getElementById(id).classList.add('active');
 }
-};
-
-function openDetail(key){
-document.getElementById('front').style.display='none';
-document.getElementById('detail').style.display='block';
-document.getElementById('detailTitle').textContent=details[key].title;
-document.getElementById('detailText').innerHTML=details[key].text;
-window.scrollTo(0,0);
-}
-
-function closeDetail(){
-document.getElementById('detail').style.display='none';
-document.getElementById('front').style.display='block';
-window.scrollTo(0,0);
-}
-
-let sec=30;
-function openPayment(){
-document.getElementById('payment').style.display='flex';
+function openConfirm(){
+document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active'));
+document.getElementById('confirm').classList.add('active');
+let t=30;
 setInterval(()=>{
-sec--;
-document.getElementById('timer').textContent=`Redirecting in ${sec} seconds…`;
-if(sec<=0)location.href='https://calendar.app.google/PT9hRYAi5MHbscxc9';
+t--;
+document.getElementById('timer').textContent=`Redirecting in ${t} seconds…`;
+if(t<=0)location.href='https://calendar.app.google/PT9hRYAi5MHbscxc9';
 },1000);
 }
+const track=document.getElementById('track');
+let x=0;
+setInterval(()=>{x+=1;if(x>=track.scrollWidth/2)x=0;track.scrollLeft=x;},40);
 </script>
 
 </body>
