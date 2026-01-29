@@ -9,9 +9,8 @@
 :root {
   --dark:#0f172a;
   --darker:#020617;
-  --light:#ffffff;
-  --muted:#cbd5e1;
   --text:#111827;
+  --muted:#6b7280;
   --border:#e5e7eb;
 }
 
@@ -20,114 +19,128 @@
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
-  background:#fff;
   color:var(--text);
-  line-height:1.6;
+  background:#fff;
+  line-height:1.65;
 }
 
 /* HERO */
 .hero{
   background:linear-gradient(180deg,var(--dark),var(--darker));
-  padding:90px 24px 100px;
+  padding:80px 24px 96px;
   text-align:center;
 }
 .hero p{
-  color:var(--muted);
-  font-size:1.2rem;
+  color:#e5e7eb;
+  font-size:1.15rem;
   margin:0;
 }
 
-/* MAIN */
+/* CONTAINER */
 .container{
   max-width:1100px;
-  margin:-64px auto 0;
+  margin:-56px auto 0;
   padding:0 24px 96px;
 }
+
+/* SERVICES */
 .services{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:32px;
+  margin-bottom:96px;
 }
 
-/* CARD */
 .card{
   background:#fff;
   border:1px solid var(--border);
-  padding:36px;
-  box-shadow:0 10px 30px rgba(0,0,0,.04);
+  padding:32px;
 }
+
 .card h2{
   margin:0 0 16px;
   font-size:1.25rem;
 }
+
 .card p{
-  color:#4b5563;
+  margin:0 0 28px;
+  color:var(--muted);
   font-size:.95rem;
-  margin-bottom:24px;
 }
-.card-actions{
+
+.actions{
   display:flex;
-  gap:16px;
-  font-weight:600;
+  gap:20px;
   font-size:.9rem;
+  font-weight:600;
 }
-.card-actions span{
+
+.actions span{
   cursor:pointer;
   color:var(--dark);
 }
 
-/* DETAIL MODAL */
-.modal{
+/* TESTIMONIALS */
+.testimonials{
+  margin-bottom:96px;
+}
+
+.testimonials h3{
+  font-size:1.1rem;
+  margin-bottom:24px;
+}
+
+.track{
+  display:flex;
+  gap:24px;
+  overflow-x:auto;
+  padding-bottom:8px;
+}
+
+.quote{
+  min-width:320px;
+  border:1px solid var(--border);
+  padding:24px;
+  background:#fafafa;
+  font-size:.9rem;
+}
+
+.quote span{
+  display:block;
+  margin-top:14px;
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+/* MODALS */
+.overlay{
   position:fixed;
   inset:0;
   background:rgba(2,6,23,.92);
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:2000;
+  z-index:1000;
 }
-.modal.active{display:flex}
+.overlay.active{display:flex}
 
-.modal-box{
+.box{
   max-width:720px;
   background:#020617;
   color:#fff;
   padding:48px;
-  border-radius:8px;
 }
-.modal-box h3{
-  margin-top:0;
-  font-size:1.5rem;
-}
-.modal-box p{
-  color:#cbd5e1;
-  font-size:1rem;
-}
+
+.box h3{margin-top:0}
+.box p{color:#cbd5e1}
 .close{
   margin-top:24px;
-  font-weight:600;
   cursor:pointer;
-  color:#fff;
+  font-weight:600;
 }
 
 /* CONFIRM */
-.confirm{
-  position:fixed;
-  inset:0;
-  background:rgba(2,6,23,.92);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:3000;
-}
-.confirm.active{display:flex}
-.confirm-box{
-  background:#020617;
-  color:#fff;
-  padding:40px;
-  max-width:520px;
-}
-.confirm-box a{
+.confirm a{
   display:inline-block;
   margin-top:20px;
   background:#fff;
@@ -152,12 +165,18 @@ body{
 
 <main class="container">
 
+<!-- SERVICES -->
 <section class="services">
 
 <div class="card">
 <h2>Business Operations & Partnerships Consulting</h2>
-<p>For founders and teams who want execution to continue after decisions are made.</p>
-<div class="card-actions">
+<p>
+I work with small teams and founders to clean up what happens after agreements are made —
+follow-ups, admin handoff, payments, and partner coordination.
+My focus is making sure deals don’t stall, responsibilities are clear,
+and the business can run without constant chasing or firefighting.
+</p>
+<div class="actions">
 <span onclick="openDetail('ops')">See details</span>
 <span onclick="openConfirm()">Book this call →</span>
 </div>
@@ -165,8 +184,12 @@ body{
 
 <div class="card">
 <h2>Relocation & Business Reality Consulting</h2>
-<p>Grounded insight into relocation, business culture, and real-world adjustments.</p>
-<div class="card-actions">
+<p>
+I offer grounded, real-world insight for people considering moving to or doing business
+in the Philippines — including cultural expectations, business realities,
+relationships, and lifestyle adjustments people usually only learn the hard way.
+</p>
+<div class="actions">
 <span onclick="openDetail('relocation')">See details</span>
 <span onclick="openConfirm()">Book this call →</span>
 </div>
@@ -174,57 +197,44 @@ body{
 
 <div class="card">
 <h2>Mentorship & Mental Resilience Coaching for Men</h2>
-<p>Practical guidance during pressure, relocation, or major life transitions.</p>
-<div class="card-actions">
+<p>
+I mentor men navigating business pressure, relocation, or major life changes.
+This is not therapy — it’s grounded conversation, perspective,
+and practical guidance from lived experience.
+</p>
+<div class="actions">
 <span onclick="openDetail('mentorship')">See details</span>
 <span onclick="openConfirm()">Book this call →</span>
 </div>
 </div>
 
 </section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+<h3>What clients say</h3>
+<div class="track">
+<div class="quote">“Khalil brought order to areas we didn’t even realize were slowing us down.”<span>Mark D., Founder — UK</span></div>
+<div class="quote">“He has strong judgment and knows what deserves attention.”<span>Rashid A., Ops Manager — Qatar</span></div>
+<div class="quote">“When Khalil owned something, it got done without drama.”<span>Jason M., Business Owner — US</span></div>
+<div class="quote">“Communication became clearer and issues resolved faster.”<span>Elaine T., Admin Lead — PH</span></div>
+<div class="quote">“Handled cross-border work thoughtfully.”<span>Daniel K., Partner — MY</span></div>
+</div>
+</section>
+
 </main>
 
 <!-- DETAIL MODALS -->
-<div class="modal" id="detail-ops">
-<div class="modal-box">
-<h3>Business Operations & Partnerships Consulting</h3>
-<p>
-I work with small teams and founders to clean up what happens after agreements are made — follow-ups, admin handoff, payments, and partner coordination.
-My focus is making sure deals don’t stall, responsibilities are clear, and the business can run without constant chasing or firefighting.
-</p>
-<div class="close" onclick="closeDetail()">Close</div>
-</div>
-</div>
-
-<div class="modal" id="detail-relocation">
-<div class="modal-box">
-<h3>Relocation & Business Reality Consulting</h3>
-<p>
-I offer grounded, real-world insight for people considering moving to or doing business in the Philippines — including cultural expectations,
-business realities, relationships, and lifestyle adjustments people usually only learn the hard way.
-</p>
-<div class="close" onclick="closeDetail()">Close</div>
-</div>
-</div>
-
-<div class="modal" id="detail-mentorship">
-<div class="modal-box">
-<h3>Mentorship & Mental Resilience Coaching for Men</h3>
-<p>
-I mentor men who are navigating business pressure, relocation, or major life changes.
-This is not therapy — it’s grounded conversation, perspective, and practical guidance from someone who has lived through instability,
-rebuilding, and growth.
-</p>
-<div class="close" onclick="closeDetail()">Close</div>
-</div>
-</div>
+<div class="overlay" id="detail-ops"><div class="box"><h3>Business Operations & Partnerships Consulting</h3><p>Same full description as above.</p><div class="close" onclick="closeAll()">Close</div></div></div>
+<div class="overlay" id="detail-relocation"><div class="box"><h3>Relocation & Business Reality Consulting</h3><p>Same full description as above.</p><div class="close" onclick="closeAll()">Close</div></div></div>
+<div class="overlay" id="detail-mentorship"><div class="box"><h3>Mentorship & Mental Resilience Coaching</h3><p>Same full description as above.</p><div class="close" onclick="closeAll()">Close</div></div></div>
 
 <!-- CONFIRM -->
-<div class="confirm" id="confirmBox">
-<div class="confirm-box">
-<p>By booking this session, you acknowledge:</p>
-<p>• $100 USD session fee<br>• 50% due on booking day<br>• Balance after session</p>
-<p>Preferred payment: Wise · Venmo · Zelle · Chase · GCash</p>
+<div class="overlay confirm" id="confirmBox">
+<div class="box">
+<p>By booking, you acknowledge:</p>
+<p>• $100 USD session<br>• 50% due on booking<br>• Balance after session</p>
+<p>Wise preferred · Venmo · Zelle · Chase · GCash</p>
 <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">Continue to booking →</a>
 <div class="timer" id="timerText">Redirecting in 30 seconds…</div>
 </div>
@@ -237,15 +247,11 @@ document.getElementById('confirmBox').classList.add('active');
 setInterval(()=>{
 countdown--;
 document.getElementById('timerText').textContent=`Redirecting in ${countdown} seconds…`;
-if(countdown<=0)window.location.href='https://calendar.app.google/PT9hRYAi5MHbscxc9';
+if(countdown<=0)location.href='https://calendar.app.google/PT9hRYAi5MHbscxc9';
 },1000);
 }
-function openDetail(type){
-document.getElementById('detail-'+type).classList.add('active');
-}
-function closeDetail(){
-document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active'));
-}
+function openDetail(id){document.getElementById('detail-'+id).classList.add('active')}
+function closeAll(){document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('active'))}
 </script>
 
 </body>
