@@ -12,7 +12,7 @@
   --text:#111827;
   --muted:#6b7280;
   --border:#e5e7eb;
-  --soft:#f9fafb;
+  --soft:#fafafa;
 }
 
 *{box-sizing:border-box}
@@ -21,8 +21,8 @@ body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
   color:var(--text);
-  background:#fff;
-  line-height:1.6;
+  background:#ffffff;
+  line-height:1.65;
 }
 
 /* HERO */
@@ -32,9 +32,9 @@ body{
   text-align:center;
 }
 .hero p{
+  margin:0;
   color:#e5e7eb;
   font-size:1.15rem;
-  margin:0;
 }
 
 /* CONTAINER */
@@ -52,9 +52,14 @@ body{
 }
 
 .card{
-  background:#fff;
+  background:#ffffff;
   border:1px solid var(--border);
   padding:32px;
+  transition:background .2s ease;
+}
+
+.card.expanded{
+  background:var(--soft);
 }
 
 .card h2{
@@ -63,27 +68,39 @@ body{
 }
 
 .card p{
-  margin:0 0 18px;
+  margin:0 0 16px;
   color:var(--muted);
   font-size:.95rem;
 }
 
-.meta{
+.actions{
   display:flex;
-  gap:18px;
-  font-size:.9rem;
+  gap:20px;
+  align-items:center;
 }
 
-.meta .more{
-  font-style:italic;
-  color:#374151;
+.see-more{
+  font-size:.85rem;
+  color:#6b7280;
   cursor:pointer;
 }
 
-.meta .book{
+.book{
+  font-size:.9rem;
   font-weight:600;
   color:var(--dark);
   cursor:pointer;
+}
+
+/* EXPANDED DETAILS */
+.details{
+  display:none;
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+  color:#374151;
+  font-size:.95rem;
+  line-height:1.7;
 }
 
 /* TESTIMONIALS */
@@ -118,46 +135,7 @@ body{
   font-size:.85rem;
 }
 
-/* SEE MORE POPUP (LIGHT + PLEASANT) */
-.preview{
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:2000;
-}
-
-.preview.active{display:flex}
-
-.preview-box{
-  max-width:640px;
-  background:#fff;
-  padding:44px;
-  border:1px solid var(--border);
-  box-shadow:0 20px 40px rgba(0,0,0,.08);
-}
-
-.preview-box h3{
-  margin-top:0;
-  font-size:1.4rem;
-}
-
-.preview-box p{
-  font-size:1rem;
-  color:#374151;
-  line-height:1.7;
-}
-
-.close{
-  margin-top:28px;
-  font-style:italic;
-  cursor:pointer;
-  color:#374151;
-}
-
-/* PAYMENT CONFIRM (unchanged, dark) */
+/* PAYMENT CONFIRM */
 .confirm{
   position:fixed;
   inset:0;
@@ -171,7 +149,7 @@ body{
 
 .confirm-box{
   background:#020617;
-  color:#fff;
+  color:#ffffff;
   padding:40px;
   max-width:520px;
 }
@@ -179,12 +157,13 @@ body{
 .confirm-box a{
   display:inline-block;
   margin-top:20px;
-  background:#fff;
+  background:#ffffff;
   color:#020617;
   padding:12px 20px;
   text-decoration:none;
   font-weight:600;
 }
+
 .timer{
   margin-top:12px;
   font-size:.85rem;
@@ -196,100 +175,121 @@ body{
 <body>
 
 <section class="hero">
-<p>Coach Khalil · Business Operations, Partnerships, and Mentorship</p>
+  <p>Coach Khalil · Business Operations, Partnerships, and Mentorship</p>
 </section>
 
 <main class="container">
 
 <section class="services">
 
+<!-- SERVICE 1 -->
 <div class="card">
-<h2>Business Operations & Partnerships Consulting</h2>
-<p>For founders and teams who want execution to continue after decisions are made.</p>
-<div class="meta">
-<span class="more" onclick="openPreview('ops')">see more</span>
-<span class="book" onclick="openConfirm()">Book this call →</span>
-</div>
+  <h2>Business Operations & Partnerships Consulting</h2>
+  <p>For founders and teams who want execution to continue after decisions are made.</p>
+
+  <div class="actions">
+    <span class="see-more" onclick="toggleDetails(this)">See more</span>
+    <span class="book" onclick="openConfirm()">Book this call →</span>
+  </div>
+
+  <div class="details">
+    I work with small teams and founders to clean up what happens after agreements are made —
+    follow-ups, admin handoff, payments, and partner coordination.
+    My focus is making sure deals don’t stall, responsibilities are clear,
+    and the business can run without constant chasing or firefighting.
+  </div>
 </div>
 
+<!-- SERVICE 2 -->
 <div class="card">
-<h2>Relocation & Business Reality Consulting</h2>
-<p>Grounded insight into relocation, business culture, and real-world adjustments.</p>
-<div class="meta">
-<span class="more" onclick="openPreview('relocation')">see more</span>
-<span class="book" onclick="openConfirm()">Book this call →</span>
-</div>
+  <h2>Relocation & Business Reality Consulting</h2>
+  <p>Grounded insight into relocation, business culture, and real-world adjustments.</p>
+
+  <div class="actions">
+    <span class="see-more" onclick="toggleDetails(this)">See more</span>
+    <span class="book" onclick="openConfirm()">Book this call →</span>
+  </div>
+
+  <div class="details">
+    I offer grounded, real-world insight for people considering moving to or doing business
+    in the Philippines — including cultural expectations, business realities,
+    relationships, and lifestyle adjustments people usually only learn the hard way.
+  </div>
 </div>
 
+<!-- SERVICE 3 -->
 <div class="card">
-<h2>Mentorship & Mental Resilience Coaching for Men</h2>
-<p>Practical guidance during pressure, relocation, or major life transitions.</p>
-<div class="meta">
-<span class="more" onclick="openPreview('mentorship')">see more</span>
-<span class="book" onclick="openConfirm()">Book this call →</span>
-</div>
+  <h2>Mentorship & Mental Resilience Coaching for Men</h2>
+  <p>Practical guidance during pressure, relocation, or major life transitions.</p>
+
+  <div class="actions">
+    <span class="see-more" onclick="toggleDetails(this)">See more</span>
+    <span class="book" onclick="openConfirm()">Book this call →</span>
+  </div>
+
+  <div class="details">
+    I mentor men who are navigating business pressure, relocation, or major life changes.
+    This is not therapy — it’s grounded conversation, perspective,
+    and practical guidance from someone who has lived through instability,
+    rebuilding, and growth.
+  </div>
 </div>
 
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
-<h3>What clients say</h3>
-<div class="track">
-<div class="quote">“Khalil brought order to areas we didn’t even realize were slowing us down.”<span>Mark D., Founder — UK</span></div>
-<div class="quote">“Strong judgment without adding noise or pressure.”<span>Rashid A., Ops Manager — Qatar</span></div>
-<div class="quote">“Reliable and calm when things were messy.”<span>Jason M., Business Owner — US</span></div>
-</div>
+  <h3>What clients say</h3>
+  <div class="track">
+    <div class="quote">“Khalil brought order to areas we didn’t even realize were slowing us down.”<span>Mark D., Founder — UK</span></div>
+    <div class="quote">“Strong judgment without adding noise or pressure.”<span>Rashid A., Ops Manager — Qatar</span></div>
+    <div class="quote">“Reliable and calm when things were messy.”<span>Jason M., Business Owner — US</span></div>
+    <div class="quote">“Handled cross-border work thoughtfully.”<span>Daniel K., Managing Partner — MY</span></div>
+    <div class="quote">“Grounded mentoring that saved time and confusion.”<span>Luis R., Entrepreneur — PH</span></div>
+  </div>
 </section>
 
 </main>
 
-<!-- SEE MORE PREVIEW -->
-<div class="preview" id="preview">
-<div class="preview-box" id="previewContent"></div>
-</div>
-
-<!-- PAYMENT -->
+<!-- PAYMENT CONFIRM -->
 <div class="confirm" id="confirmBox">
-<div class="confirm-box">
-<p>• $100 USD session<br>• 50% due on booking<br>• Balance after session</p>
-<p>Wise preferred · Venmo · Zelle · Chase · GCash</p>
-<a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">Continue to booking →</a>
-<div class="timer" id="timerText">Redirecting in 30 seconds…</div>
-</div>
+  <div class="confirm-box">
+    <p>• $100 USD session<br>• 50% due on booking<br>• Balance after session</p>
+    <p>Wise preferred · Venmo · Zelle · Chase · GCash</p>
+    <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">Continue to booking →</a>
+    <div class="timer" id="timerText">Redirecting in 30 seconds…</div>
+  </div>
 </div>
 
 <script>
-const previews={
-ops:`<h3>Business Operations & Partnerships Consulting</h3>
-<p>I work with small teams and founders to clean up what happens after agreements are made — follow-ups, admin handoff, payments, and partner coordination. My focus is making sure deals don’t stall, responsibilities are clear, and the business can run without constant chasing or firefighting.</p>
-<div class="close" onclick="closePreview()">Close</div>`,
+function toggleDetails(el){
+  const card = el.closest('.card');
+  const details = card.querySelector('.details');
+  const open = card.classList.contains('expanded');
 
-relocation:`<h3>Relocation & Business Reality Consulting</h3>
-<p>I offer grounded, real-world insight for people considering moving to or doing business in the Philippines — including cultural expectations, business realities, relationships, and lifestyle adjustments people usually only learn the hard way.</p>
-<div class="close" onclick="closePreview()">Close</div>`,
+  document.querySelectorAll('.card').forEach(c=>{
+    c.classList.remove('expanded');
+    c.querySelector('.details').style.display='none';
+    c.querySelector('.see-more').textContent='See more';
+  });
 
-mentorship:`<h3>Mentorship & Mental Resilience Coaching for Men</h3>
-<p>I mentor men navigating business pressure, relocation, or major life changes. This is not therapy — it’s grounded conversation, perspective, and practical guidance from someone who has lived through instability, rebuilding, and growth.</p>
-<div class="close" onclick="closePreview()">Close</div>`
-};
-
-function openPreview(type){
-document.getElementById('previewContent').innerHTML=previews[type];
-document.getElementById('preview').classList.add('active');
-}
-function closePreview(){
-document.getElementById('preview').classList.remove('active');
+  if(!open){
+    card.classList.add('expanded');
+    details.style.display='block';
+    el.textContent='See less';
+  }
 }
 
 let countdown=30;
 function openConfirm(){
-document.getElementById('confirmBox').classList.add('active');
-setInterval(()=>{
-countdown--;
-document.getElementById('timerText').textContent=`Redirecting in ${countdown} seconds…`;
-if(countdown<=0)location.href='https://calendar.app.google/PT9hRYAi5MHbscxc9';
-},1000);
+  document.getElementById('confirmBox').classList.add('active');
+  setInterval(()=>{
+    countdown--;
+    document.getElementById('timerText').textContent=`Redirecting in ${countdown} seconds…`;
+    if(countdown<=0){
+      window.location.href='https://calendar.app.google/PT9hRYAi5MHbscxc9';
+    }
+  },1000);
 }
 </script>
 
