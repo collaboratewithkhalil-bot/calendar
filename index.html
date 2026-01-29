@@ -6,12 +6,13 @@
 <title>Coach Khalil</title>
 
 <style>
-:root {
+:root{
   --dark:#0f172a;
   --darker:#020617;
   --text:#111827;
   --muted:#6b7280;
   --border:#e5e7eb;
+  --soft:#f9fafb;
 }
 
 *{box-sizing:border-box}
@@ -21,7 +22,7 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
   color:var(--text);
   background:#fff;
-  line-height:1.65;
+  line-height:1.6;
 }
 
 /* HERO */
@@ -48,7 +49,6 @@ body{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:32px;
-  margin-bottom:96px;
 }
 
 .card{
@@ -58,31 +58,37 @@ body{
 }
 
 .card h2{
-  margin:0 0 16px;
+  margin:0 0 14px;
   font-size:1.25rem;
 }
 
 .card p{
-  margin:0 0 28px;
+  margin:0 0 18px;
   color:var(--muted);
   font-size:.95rem;
 }
 
-.actions{
+.meta{
   display:flex;
-  gap:20px;
+  gap:18px;
   font-size:.9rem;
-  font-weight:600;
 }
 
-.actions span{
+.meta .more{
+  font-style:italic;
+  color:#374151;
   cursor:pointer;
+}
+
+.meta .book{
+  font-weight:600;
   color:var(--dark);
+  cursor:pointer;
 }
 
 /* TESTIMONIALS */
 .testimonials{
-  margin-bottom:96px;
+  margin-top:96px;
 }
 
 .testimonials h3{
@@ -101,7 +107,7 @@ body{
   min-width:320px;
   border:1px solid var(--border);
   padding:24px;
-  background:#fafafa;
+  background:var(--soft);
   font-size:.9rem;
 }
 
@@ -112,35 +118,65 @@ body{
   font-size:.85rem;
 }
 
-/* MODALS */
-.overlay{
+/* SEE MORE POPUP (LIGHT + PLEASANT) */
+.preview{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.preview.active{display:flex}
+
+.preview-box{
+  max-width:640px;
+  background:#fff;
+  padding:44px;
+  border:1px solid var(--border);
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
+
+.preview-box h3{
+  margin-top:0;
+  font-size:1.4rem;
+}
+
+.preview-box p{
+  font-size:1rem;
+  color:#374151;
+  line-height:1.7;
+}
+
+.close{
+  margin-top:28px;
+  font-style:italic;
+  cursor:pointer;
+  color:#374151;
+}
+
+/* PAYMENT CONFIRM (unchanged, dark) */
+.confirm{
   position:fixed;
   inset:0;
   background:rgba(2,6,23,.92);
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:1000;
+  z-index:3000;
 }
-.overlay.active{display:flex}
+.confirm.active{display:flex}
 
-.box{
-  max-width:720px;
+.confirm-box{
   background:#020617;
   color:#fff;
-  padding:48px;
+  padding:40px;
+  max-width:520px;
 }
 
-.box h3{margin-top:0}
-.box p{color:#cbd5e1}
-.close{
-  margin-top:24px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-/* CONFIRM */
-.confirm a{
+.confirm-box a{
   display:inline-block;
   margin-top:20px;
   background:#fff;
@@ -165,46 +201,32 @@ body{
 
 <main class="container">
 
-<!-- SERVICES -->
 <section class="services">
 
 <div class="card">
 <h2>Business Operations & Partnerships Consulting</h2>
-<p>
-I work with small teams and founders to clean up what happens after agreements are made —
-follow-ups, admin handoff, payments, and partner coordination.
-My focus is making sure deals don’t stall, responsibilities are clear,
-and the business can run without constant chasing or firefighting.
-</p>
-<div class="actions">
-<span onclick="openDetail('ops')">See details</span>
-<span onclick="openConfirm()">Book this call →</span>
+<p>For founders and teams who want execution to continue after decisions are made.</p>
+<div class="meta">
+<span class="more" onclick="openPreview('ops')">see more</span>
+<span class="book" onclick="openConfirm()">Book this call →</span>
 </div>
 </div>
 
 <div class="card">
 <h2>Relocation & Business Reality Consulting</h2>
-<p>
-I offer grounded, real-world insight for people considering moving to or doing business
-in the Philippines — including cultural expectations, business realities,
-relationships, and lifestyle adjustments people usually only learn the hard way.
-</p>
-<div class="actions">
-<span onclick="openDetail('relocation')">See details</span>
-<span onclick="openConfirm()">Book this call →</span>
+<p>Grounded insight into relocation, business culture, and real-world adjustments.</p>
+<div class="meta">
+<span class="more" onclick="openPreview('relocation')">see more</span>
+<span class="book" onclick="openConfirm()">Book this call →</span>
 </div>
 </div>
 
 <div class="card">
 <h2>Mentorship & Mental Resilience Coaching for Men</h2>
-<p>
-I mentor men navigating business pressure, relocation, or major life changes.
-This is not therapy — it’s grounded conversation, perspective,
-and practical guidance from lived experience.
-</p>
-<div class="actions">
-<span onclick="openDetail('mentorship')">See details</span>
-<span onclick="openConfirm()">Book this call →</span>
+<p>Practical guidance during pressure, relocation, or major life transitions.</p>
+<div class="meta">
+<span class="more" onclick="openPreview('mentorship')">see more</span>
+<span class="book" onclick="openConfirm()">Book this call →</span>
 </div>
 </div>
 
@@ -215,24 +237,21 @@ and practical guidance from lived experience.
 <h3>What clients say</h3>
 <div class="track">
 <div class="quote">“Khalil brought order to areas we didn’t even realize were slowing us down.”<span>Mark D., Founder — UK</span></div>
-<div class="quote">“He has strong judgment and knows what deserves attention.”<span>Rashid A., Ops Manager — Qatar</span></div>
-<div class="quote">“When Khalil owned something, it got done without drama.”<span>Jason M., Business Owner — US</span></div>
-<div class="quote">“Communication became clearer and issues resolved faster.”<span>Elaine T., Admin Lead — PH</span></div>
-<div class="quote">“Handled cross-border work thoughtfully.”<span>Daniel K., Partner — MY</span></div>
+<div class="quote">“Strong judgment without adding noise or pressure.”<span>Rashid A., Ops Manager — Qatar</span></div>
+<div class="quote">“Reliable and calm when things were messy.”<span>Jason M., Business Owner — US</span></div>
 </div>
 </section>
 
 </main>
 
-<!-- DETAIL MODALS -->
-<div class="overlay" id="detail-ops"><div class="box"><h3>Business Operations & Partnerships Consulting</h3><p>Same full description as above.</p><div class="close" onclick="closeAll()">Close</div></div></div>
-<div class="overlay" id="detail-relocation"><div class="box"><h3>Relocation & Business Reality Consulting</h3><p>Same full description as above.</p><div class="close" onclick="closeAll()">Close</div></div></div>
-<div class="overlay" id="detail-mentorship"><div class="box"><h3>Mentorship & Mental Resilience Coaching</h3><p>Same full description as above.</p><div class="close" onclick="closeAll()">Close</div></div></div>
+<!-- SEE MORE PREVIEW -->
+<div class="preview" id="preview">
+<div class="preview-box" id="previewContent"></div>
+</div>
 
-<!-- CONFIRM -->
-<div class="overlay confirm" id="confirmBox">
-<div class="box">
-<p>By booking, you acknowledge:</p>
+<!-- PAYMENT -->
+<div class="confirm" id="confirmBox">
+<div class="confirm-box">
 <p>• $100 USD session<br>• 50% due on booking<br>• Balance after session</p>
 <p>Wise preferred · Venmo · Zelle · Chase · GCash</p>
 <a href="https://calendar.app.google/PT9hRYAi5MHbscxc9">Continue to booking →</a>
@@ -241,6 +260,28 @@ and practical guidance from lived experience.
 </div>
 
 <script>
+const previews={
+ops:`<h3>Business Operations & Partnerships Consulting</h3>
+<p>I work with small teams and founders to clean up what happens after agreements are made — follow-ups, admin handoff, payments, and partner coordination. My focus is making sure deals don’t stall, responsibilities are clear, and the business can run without constant chasing or firefighting.</p>
+<div class="close" onclick="closePreview()">Close</div>`,
+
+relocation:`<h3>Relocation & Business Reality Consulting</h3>
+<p>I offer grounded, real-world insight for people considering moving to or doing business in the Philippines — including cultural expectations, business realities, relationships, and lifestyle adjustments people usually only learn the hard way.</p>
+<div class="close" onclick="closePreview()">Close</div>`,
+
+mentorship:`<h3>Mentorship & Mental Resilience Coaching for Men</h3>
+<p>I mentor men navigating business pressure, relocation, or major life changes. This is not therapy — it’s grounded conversation, perspective, and practical guidance from someone who has lived through instability, rebuilding, and growth.</p>
+<div class="close" onclick="closePreview()">Close</div>`
+};
+
+function openPreview(type){
+document.getElementById('previewContent').innerHTML=previews[type];
+document.getElementById('preview').classList.add('active');
+}
+function closePreview(){
+document.getElementById('preview').classList.remove('active');
+}
+
 let countdown=30;
 function openConfirm(){
 document.getElementById('confirmBox').classList.add('active');
@@ -250,8 +291,6 @@ document.getElementById('timerText').textContent=`Redirecting in ${countdown} se
 if(countdown<=0)location.href='https://calendar.app.google/PT9hRYAi5MHbscxc9';
 },1000);
 }
-function openDetail(id){document.getElementById('detail-'+id).classList.add('active')}
-function closeAll(){document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('active'))}
 </script>
 
 </body>
